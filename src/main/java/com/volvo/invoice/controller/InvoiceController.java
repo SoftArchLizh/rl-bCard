@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/invoices")
 public class InvoiceController {
 
+    @Autowired
     private final InvoiceInfoService invoiceInfoService;
 
     @ApiOperation(value = "开票接口2.0")

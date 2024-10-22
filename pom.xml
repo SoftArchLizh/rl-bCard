@@ -8,13 +8,12 @@
         <version>3.2.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.volvo</groupId>
-    <artifactId>volvo-invoice-feature240330</artifactId>
+    <groupId>com.ronglbCard</groupId>
+    <artifactId>rl-bCard-feature241130</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>invoice-service</name>
-    <description>invoice-service</description>
+    <name>bCard-ai</name>
+    <description>rl-bCard</description>
     <properties>
-<!--        <java.version>17</java.version>-->
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
     </properties>
@@ -118,6 +117,63 @@
             <artifactId>plantuml</artifactId>
             <version>1.2023.2</version> <!-- 检查并使用最新版本 -->
         </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version> <!-- 检查是否有新版本 -->
+        </dependency>
+
+        <!-- hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.22</version>
+        </dependency>
+
+
+            <dependency>
+                <groupId>com.googlecode.soundlibs</groupId>
+                <artifactId>mp3spi</artifactId>
+                <version>1.9.5-1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.soundlibs</groupId>
+                <artifactId>tritonus-share</artifactId>
+                <version>0.3.7-2</version>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.googlecode.soundlibs</groupId>-->
+<!--                <artifactId>tritonus-mp3</artifactId>-->
+<!--                <version>0.3.6-1</version>-->
+<!--            </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.unfbx</groupId>-->
+<!--            <artifactId>chatgpt-java</artifactId>-->
+<!--            <version>1.0.14-beta1</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>dev.langchain4j</groupId>-->
+<!--            <artifactId>langchain4j</artifactId>-->
+<!--            <version>0.22.0</version> &lt;!&ndash; TODO: 使用最新的版本 &ndash;&gt;-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>dev.langchain4j</groupId>-->
+<!--            <artifactId>langchain4j-open-ai</artifactId>-->
+<!--            <version>${langchain4j.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.langchain4j</groupId>-->
+<!--            <artifactId>langchain4j-embeddings</artifactId>-->
+<!--            <version>${langchain4j.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>dev.langchain4j</groupId>-->
+<!--            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>-->
+<!--            <version>${langchain4j.version}</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

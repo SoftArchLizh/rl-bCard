@@ -39,11 +39,11 @@ public class InvoiceControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Mock
-    private InvoiceInfoService invoiceInfoService;
-
-    @Mock
-    private VJdcfphzService vJdcfphzService;
+//    @Mock
+//    private InvoiceInfoService invoiceInfoService;
+//
+//    @Mock
+//    private VJdcfphzService vJdcfphzService;
 
 
     @InjectMocks

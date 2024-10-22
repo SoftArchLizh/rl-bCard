@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.volvo.invoice.mapper.WarrantyOrdersMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.volvo.invoice.dto.WarrantyOrders">
+        <id column="id" property="id" />
+        <result column="dealer_code" property="dealerCode" />
+        <result column="dealer_name" property="dealerName" />
+        <result column="warranty_order_no" property="warrantyOrderNo" />
+        <result column="warranty_status" property="warrantyStatus" />
+        <result column="vin_code" property="vinCode" />
+        <result column="work_order_no" property="workOrderNo" />
+        <result column="repair_date" property="repairDate" />
+        <result column="is_closed" property="isClosed" />
+        <result column="mileage" property="mileage" />
+        <result column="vehicle_model_code" property="vehicleModelCode" />
+        <result column="license_plate" property="licensePlate" />
+        <result column="sale_date" property="saleDate" />
+        <result column="parts_total" property="partsTotal" />
+        <result column="labor_hours" property="laborHours" />
+        <result column="warranty_cost" property="warrantyCost" />
+        <result column="labor_fee" property="laborFee" />
+        <result column="outsourcing_salary" property="outsourcingSalary" />
+        <result column="is_rejected" property="isRejected" />
+        <result column="report_date" property="reportDate" />
+        <result column="reporter" property="reporter" />
+        <result column="bpm_audit_comment" property="bpmAuditComment" />
+        <result column="remarks" property="remarks" />
+        <result column="refund_date" property="refundDate" />
+        <result column="is_uploaded" property="isUploaded" />
+        <result column="upload_attempts" property="uploadAttempts" />
+        <result column="parts_application_amount" property="partsApplicationAmount" />
+        <result column="labor_application_amount" property="laborApplicationAmount" />
+        <result column="repair_details" property="repairDetails" />
+        <result column="attachments" property="attachments" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dealer_code, dealer_name, warranty_order_no, warranty_status, vin_code, work_order_no, repair_date, is_closed, mileage, vehicle_model_code, license_plate, sale_date, parts_total, labor_hours, warranty_cost, labor_fee, outsourcing_salary, is_rejected, report_date, reporter, bpm_audit_comment, remarks, refund_date, is_uploaded, upload_attempts, parts_application_amount, labor_application_amount, repair_details, attachments
+    </sql>
+
+</mapper>
