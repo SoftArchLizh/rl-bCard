@@ -121,7 +121,7 @@ public class OpenaiUnfbxTest {
         ChatCompletionResponse chatCompletionResponse = client.chatCompletion(chatCompletion);
         chatCompletionResponse.getChoices().forEach(e -> {
             System.out.println(e.getMessage());
-            log
+
         });
     }
 
