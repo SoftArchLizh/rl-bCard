@@ -142,38 +142,11 @@
                 <artifactId>tritonus-share</artifactId>
                 <version>0.3.7-2</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>com.googlecode.soundlibs</groupId>-->
-<!--                <artifactId>tritonus-mp3</artifactId>-->
-<!--                <version>0.3.6-1</version>-->
-<!--            </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.unfbx</groupId>-->
-<!--            <artifactId>chatgpt-java</artifactId>-->
-<!--            <version>1.0.14-beta1</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>dev.langchain4j</groupId>-->
-<!--            <artifactId>langchain4j</artifactId>-->
-<!--            <version>0.22.0</version> &lt;!&ndash; TODO: 使用最新的版本 &ndash;&gt;-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>dev.langchain4j</groupId>-->
-<!--            <artifactId>langchain4j-open-ai</artifactId>-->
-<!--            <version>${langchain4j.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.langchain4j</groupId>-->
-<!--            <artifactId>langchain4j-embeddings</artifactId>-->
-<!--            <version>${langchain4j.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>dev.langchain4j</groupId>-->
-<!--            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>-->
-<!--            <version>${langchain4j.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.unfbx</groupId>
+            <artifactId>chatgpt-java</artifactId>
+            <version>4o-mini-v1.0.0</version>
+        </dependency>
 
     </dependencies>
 

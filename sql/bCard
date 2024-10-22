@@ -1,0 +1,44 @@
+
+字段名：
+姓名， 职位， Email ， 移动电话， 公司 ， 简介 ， 头像url ， 别名， 公司简介 ， 公司图片URL，创建时间，修改时间，逻辑删除， 创建 人 ，修改人
+
+
+
+CREATE TABLE contacts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL COMMENT '姓名',
+    position VARCHAR(255) COMMENT '职位',
+    email VARCHAR(255) COMMENT 'Email',
+    mobile_phone VARCHAR(20) COMMENT '移动电话',
+    company VARCHAR(255) COMMENT '公司',
+    introduction TEXT COMMENT '简介',
+    avatar_url VARCHAR(255) COMMENT '头像url',
+    alias VARCHAR(255) COMMENT '别名',
+    company_introduction TEXT COMMENT '公司简介',
+    company_image_url VARCHAR(255) COMMENT '公司图片URL',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    is_deleted BOOLEAN DEFAULT FALSE COMMENT '逻辑删除',
+    created_by VARCHAR(255) COMMENT '创建人',
+    updated_by VARCHAR(255) COMMENT '修改人'
+);
+
+
+
+字段说明
+id: 主键，自增
+name: 姓名，字符串类型，不能为空
+position: 职位，字符串类型
+email: 邮箱，字符串类型
+mobile_phone: 移动电话，字符串类型
+company: 公司，字符串类型
+introduction: 简介，文本类型
+avatar_url: 头像URL，字符串类型
+alias: 别名，字符串类型
+company_introduction: 公司简介，文本类型
+company_image_url: 公司图片URL，字符串类型
+created_at: 创建时间，默认值为当前时间
+updated_at: 修改时间，默认值为当前时间，并且在记录更新时自动更新
+is_deleted: 逻辑删除标志，默认值为 FALSE
+created_by: 创建人，字符串类型
+updated_by: 修改人，字符串类型
