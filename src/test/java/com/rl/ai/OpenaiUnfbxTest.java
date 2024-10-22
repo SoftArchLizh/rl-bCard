@@ -23,12 +23,12 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import java.util.Arrays;
 
 /**
  * Author: 李中华
  * Date: 2024/10/17 18:31
  **/
+@Slf4j
 public class OpenaiUnfbxTest {
 
     private OpenAiClient client;
@@ -97,7 +97,10 @@ public class OpenaiUnfbxTest {
                 .model(ChatCompletion.Model.GPT_4o_VISION_MIMI.getName())
                 .build();
         ChatCompletionResponse chatCompletionResponse = client.chatCompletion(chatCompletion);
-        chatCompletionResponse.getChoices().forEach(e -> System.out.println(e.getMessage()));
+        chatCompletionResponse.getChoices().forEach(e -> {
+            System.out.println(e.getMessage());
+            log.info("openai return :  -->"+e.getMessage().getContent());
+        });
 
     }
 
