@@ -11,7 +11,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: dev
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  swagger3:
+    description: bCard项目
+    title: bCard项目
+    name: swagger3
+    email: bCard项目@qq.com
+    version: 1.1
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

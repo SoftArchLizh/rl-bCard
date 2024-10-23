@@ -2,11 +2,11 @@ package com.volvo.invoice.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -17,21 +17,21 @@ public class TtOrderStartDTO implements Serializable {
     /**
      * 主键
      */
-    @NotNull(message="主键/序号不能为空！")
+
     @ApiModelProperty("主键/序号")
     private Long id;
 
     /**
      * 购方名称
      */
-    @NotBlank(message="购方名称不能为空！")
+
     @ApiModelProperty("购方名称")
     private String buyeName;
 
     /**
      * 购方税号
      */
-    @NotBlank(message="购方税号不能为空！")
+
     @ApiModelProperty("购方税号")
     private String buyeTaxNo;
 

@@ -1,10 +1,10 @@
 package com.volvo.invoice.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;

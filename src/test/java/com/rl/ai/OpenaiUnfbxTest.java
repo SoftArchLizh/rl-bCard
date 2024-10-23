@@ -82,8 +82,8 @@ public class OpenaiUnfbxTest {
      */
     @Test
     public void pictureChat() {
-        Content textContent = Content.builder().text("请帮识别图片的格式 ，内容，谢谢").type(Content.Type.TEXT.getName()).build();//What’s in this image?
-        ImageUrl imageUrl = ImageUrl.builder().url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg").build();
+        Content textContent = Content.builder().text("请帮识别图片的格式 ，文字内容，谢谢").type(Content.Type.TEXT.getName()).build();//What’s in this image?
+        ImageUrl imageUrl = ImageUrl.builder().url("http://47.96.171.86/pic/aicard_20241023124107.png").build();
 //        ImageUrl imageUrl = ImageUrl.builder().url("D:\\bCard\\png\\Gfp-wisconsin-madison-the-nature-boardwalk.jpg.webp").build();
         Content imageContent = Content.builder().imageUrl(imageUrl).type(Content.Type.IMAGE_URL.getName()).build();
 //        imageContent = Content.builder().imageUrl()
