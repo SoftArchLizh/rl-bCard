@@ -2,7 +2,8 @@ package com.volvo.invoice.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.volvo.invoice.common.PropertiesCommon;
+
+import com.rongl.common.PropertiesCommon;
 import com.volvo.invoice.dto.WarrantyOrderDTO;
 import com.volvo.invoice.dto.WarrantyOrders;
 import com.volvo.invoice.mapper.WarrantyOrdersMapper;

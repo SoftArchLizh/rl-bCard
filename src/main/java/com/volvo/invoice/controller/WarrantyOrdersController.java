@@ -13,10 +13,10 @@ import cn.hutool.core.bean.BeanUtil;
 /**
  * Date: 2024/6/28 9:33
  **/
-@Api(tags = "保修工单 ")
+//@Api(tags = "保修工单 ")
 @Slf4j
-@RestController
-@RequestMapping("/warrantyOrder")
+//@RestController
+//@RequestMapping("/warrantyOrder")
 public class WarrantyOrdersController {
 
     @Autowired

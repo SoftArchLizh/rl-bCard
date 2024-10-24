@@ -8,10 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = "发票管理")
+//@Api(tags = "发票管理")
 @Slf4j
-@RestController
-@RequestMapping("/v-jdcfphzs")
+//@RestController
+//@RequestMapping("/v-jdcfphzs")
 public class VJdcfphzController {
 
     private final VJdcfphzService vJdcfphzService;

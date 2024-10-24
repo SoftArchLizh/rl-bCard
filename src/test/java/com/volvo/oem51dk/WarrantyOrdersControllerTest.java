@@ -4,8 +4,9 @@ package com.volvo.oem51dk;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rongl.common.PropertiesCommon;
 import com.volvo.invoice.InvoiceServiceApplication;
-import com.volvo.invoice.common.PropertiesCommon;
+
 import com.volvo.invoice.dto.WarrantyOrderDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;

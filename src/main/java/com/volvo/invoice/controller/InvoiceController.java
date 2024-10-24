@@ -13,10 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Api(tags = "订单发票管理")
+//@Api(tags = "订单发票管理")
 @Slf4j
-@RestController
-@RequestMapping("/invoices")
+//@RestController
+//@RequestMapping("/invoices")
 public class InvoiceController {
 
     @Autowired

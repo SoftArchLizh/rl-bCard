@@ -1,4 +1,4 @@
-package com.volvo.invoice.common;
+package com.rongl.common;
 
 /**
  * Author:

@@ -1,12 +1,8 @@
-package com.volvo.invoice.config;
+package com.rongl.config;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -17,13 +13,8 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-
+//http://localhost:9080/swagger-ui/index.html
 @EnableOpenApi // 可选
-//@EnableWebMvc // spring-boot-starter-web冲突会引发启动服务时null，必选
 @Configuration
 public class SwaggerConfig {
 

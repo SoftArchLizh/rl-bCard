@@ -8,8 +8,8 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
-@SpringBootApplication
-@MapperScan("com.volvo.*.mapper")
+//@SpringBootApplication
+//@MapperScan("com.volvo.*.mapper")
 public class InvoiceServiceApplication {
 
     public static void main(String[] args) {

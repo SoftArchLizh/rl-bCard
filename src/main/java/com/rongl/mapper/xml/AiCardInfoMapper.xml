@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rongl.ai.mapper.AiCardInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.rongl.entity.AiCardInfo">
+        <id column="id_key" property="idKey" />
+        <result column="name" property="name" />
+        <result column="position" property="position" />
+        <result column="email" property="email" />
+        <result column="mobile_phone" property="mobilePhone" />
+        <result column="company" property="company" />
+        <result column="introduction" property="introduction" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="alias" property="alias" />
+        <result column="company_introduction" property="companyIntroduction" />
+        <result column="company_image_url" property="companyImageUrl" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="created_by" property="createdBy" />
+        <result column="updated_by" property="updatedBy" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id_key, name, position, email, mobile_phone, company, introduction, avatar_url, alias, company_introduction, company_image_url, created_at, updated_at, is_deleted, created_by, updated_by
+    </sql>
+
+</mapper>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 
-@Api(tags = "autoDev controller")
+//@Api(tags = "autoDev controller")
 @Slf4j
 @RestController
 @RequestMapping("/home")
