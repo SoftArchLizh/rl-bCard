@@ -9,10 +9,6 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Controller;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,32 +47,71 @@ public class AiCardInfoController {
 
     @PostMapping
     @ApiOperation(value = "新增AI卡片", notes = "根据AiCardInfo对象新增一条记录")
-    public void add(@RequestBody AiCardInfo aiCardInfo) {
-        aiCardInfoService.save(aiCardInfo);
+    public ReturnResult add(@RequestBody AiCardInfo aiCardInfo) {
+
+        try {
+            aiCardInfoService.save(aiCardInfo);
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+
+        return  ReturnResult.OK();
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除AI卡片", notes = "根据ID删除一条记录")
-    public void delete(@PathVariable Long id) {
-        aiCardInfoService.removeById(id);
+    public ReturnResult delete(@PathVariable Long id) {
+        try {
+            aiCardInfoService.removeById(id);
+        }catch (Exception e){
+                log.error(e.getMessage());
+        }
+
+        return  ReturnResult.OK();
     }
 
     @PutMapping
     @ApiOperation(value = "修改AI卡片", notes = "根据AiCardInfo对象修改一条记录")
-    public void update(@RequestBody com.rongl.entity.AiCardInfo aiCardInfo) {
-        aiCardInfoService.updateById(aiCardInfo);
+    public ReturnResult update(@RequestBody com.rongl.entity.AiCardInfo aiCardInfo) {
+
+
+        try {
+            aiCardInfoService.updateById(aiCardInfo);
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+
+        return  ReturnResult.OK();
+
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "查询AI卡片", notes = "根据ID查询一条记录")
-    public AiCardInfo get(@PathVariable Long id) {
-        return aiCardInfoService.getById(id);
+    public ReturnResult   get(@PathVariable Long id) {
+        AiCardInfo byId=null;
+        try {
+              byId = aiCardInfoService.getById(id);
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+
+        return  ReturnResult.OK().setData(byId);
+
     }
 
     @GetMapping
     @ApiOperation(value = "查询所有AI卡片", notes = "查询所有记录")
-    public List<AiCardInfo> listAll() {
-        return aiCardInfoService.listAll();
+    public ReturnResult listAll() {
+
+        List<AiCardInfo> cardInfos = null;
+        try {
+            cardInfos = aiCardInfoService.listAll();
+        }catch (Exception e){
+            log.error(e.getMessage());
+        }
+
+        return  ReturnResult.OK().setData(cardInfos);
+
     }
 
 }
