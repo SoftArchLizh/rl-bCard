@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ronglbCard</groupId>
     <artifactId>rl-bCard-feature241130</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>bCard-ai</name>
     <description>rl-bCard</description>
     <properties>
