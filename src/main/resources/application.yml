@@ -32,3 +32,6 @@ mybatis-plus:
       logic-not-delete-value: 0
   ##mybatis设置
   mapper-locations: classpath:mapper/**/*.xml  #mapper.xml文件所
+
+bCard-path-win: D:\bCard\png\
+bCard-path-linux: /rl-ai/bCard-Jar/png/

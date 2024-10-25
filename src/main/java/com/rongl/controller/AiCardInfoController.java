@@ -1,12 +1,15 @@
 package com.rongl.controller;
 
 
+import com.rongl.common.BCardUtils;
+import com.rongl.common.PropertiesCommon;
 import com.rongl.common.ReturnResult;
 import com.rongl.entity.AiCardInfo;
 import com.rongl.service.IAiCardInfoService;
 import com.rongl.service.impl.AiCardInfoServiceImpl;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.swagger.annotations.Api;
@@ -20,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -39,16 +43,34 @@ public class AiCardInfoController {
     @Autowired
     private AiCardInfoServiceImpl aiCardInfoService;
 
+    @Value("${bCard-path-win}")
+    private String pathWin;
+    @Value("${bCard-path-linux}")
+    private String pathLinux;
+
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ApiOperation(value = "名片上传 ", notes = " 上传名片 ， 默认上传到本地")
-    public ReturnResult uploadFileToLocal(@RequestParam("resumefile") MultipartFile file, HttpServletRequest request) {
+    public ReturnResult uploadFileToLocal(@RequestParam("bCardfile") MultipartFile file, HttpServletRequest request) {
 
         log.info("上传名片");
-        String s = aiCardInfoService.uploadFile666(file);
-        log.info("上传名片：  ：  ：  "+ s);
-        try {
 
-            String uploadfile = "D:\\bCard\\png\\u" + file.getOriginalFilename();
+        try {
+            UUID uuid = UUID.randomUUID();
+            String uploadfile = "";
+            String  openaiPath = "";
+            if (BCardUtils.getCurrentOS().equals( PropertiesCommon.OSwin)) {
+                uploadfile = pathWin +uuid+file.getOriginalFilename();
+
+            }else if (BCardUtils.getCurrentOS().equals( PropertiesCommon.OSlinux)) {
+                uploadfile = pathLinux +uuid+file.getOriginalFilename();
+                openaiPath = pathLinux;
+            }else if (BCardUtils.getCurrentOS().equals( PropertiesCommon.OSmac)) {
+                uploadfile = pathLinux +uuid+file.getOriginalFilename();
+            }else {
+                log.error("未知的操作系统");
+                return ReturnResult.ErrorLogout();
+            }
             String headerToken  = request.getHeader("X-Token"); //
             String uid  = request.getHeader("uniqueId");
             // 从header 里获取用户 唯一标识，用于后续 记录日志 ； 禁止批量上传
@@ -56,6 +78,9 @@ public class AiCardInfoController {
             log.info("uid  ： "+uid);
             log.info("文件保存路径：" + uploadfile);
             Files.copy(file.getInputStream(), Paths.get(uploadfile));
+
+            String s = aiCardInfoService.uploadFile666(file);
+
         } catch (IOException e) {
            log.error(e.getMessage());
         }
