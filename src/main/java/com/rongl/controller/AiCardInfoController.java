@@ -47,7 +47,8 @@ public class AiCardInfoController {
     private String pathWin;
     @Value("${bCard-path-linux}")
     private String pathLinux;
-
+    @Value("${bCard-outpath-linux}")
+    private String outpathLinux;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ApiOperation(value = "名片上传 ", notes = " 上传名片 ， 默认上传到本地")
@@ -58,15 +59,15 @@ public class AiCardInfoController {
         try {
             UUID uuid = UUID.randomUUID();
             String uploadfile = "";
-            String  openaiPath = "";
             if (BCardUtils.getCurrentOS().equals( PropertiesCommon.OSwin)) {
                 uploadfile = pathWin +uuid+file.getOriginalFilename();
 
             }else if (BCardUtils.getCurrentOS().equals( PropertiesCommon.OSlinux)) {
                 uploadfile = pathLinux +uuid+file.getOriginalFilename();
-                openaiPath = pathLinux;
+                outpathLinux = outpathLinux+uuid+file.getOriginalFilename();
             }else if (BCardUtils.getCurrentOS().equals( PropertiesCommon.OSmac)) {
                 uploadfile = pathLinux +uuid+file.getOriginalFilename();
+                outpathLinux = outpathLinux+uuid+file.getOriginalFilename();
             }else {
                 log.error("未知的操作系统");
                 return ReturnResult.ErrorLogout();
@@ -79,7 +80,7 @@ public class AiCardInfoController {
             log.info("文件保存路径：" + uploadfile);
             Files.copy(file.getInputStream(), Paths.get(uploadfile));
 
-            String s = aiCardInfoService.uploadFile666(file);
+            String s = aiCardInfoService.uploadFile(outpathLinux);
 
         } catch (IOException e) {
            log.error(e.getMessage());

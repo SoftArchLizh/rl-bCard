@@ -17,5 +17,5 @@ import java.util.List;
 public interface IAiCardInfoService extends IService<AiCardInfo> {
 
     List<AiCardInfo> listAll();
-    String  uploadFile666(MultipartFile file);
+    String  uploadFile(String filePath);
 }
