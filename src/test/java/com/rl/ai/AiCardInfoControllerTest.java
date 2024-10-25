@@ -1,73 +1,98 @@
 package com.rl.ai;
 
-import java.util.*;
-import java.math.*;
-import com.rongl.common.ReturnResult;
+import com.rongl.AIBCardServiceApplication;
 import com.rongl.controller.AiCardInfoController;
+import com.rongl.entity.AiCardInfo;
 import com.rongl.service.impl.AiCardInfoServiceImpl;
+import com.volvo.invoice.InvoiceServiceApplication;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.multipart.MultipartFile;
-
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@ExtendWith(MockitoExtension.class)
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+@SpringBootTest(classes = AIBCardServiceApplication.class )
+@AutoConfigureMockMvc
+@Slf4j
 public class AiCardInfoControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
-    private AiCardInfoServiceImpl aiCardInfoService;
+    @MockBean
+    private AiCardInfoServiceImpl aiCardInfoService; // 假设AiCardInfoService是AiCardInfoController的依赖
 
-    @InjectMocks
-    private AiCardInfoController aiCardInfoController;
+    private MockMultipartFile file;
 
     @BeforeEach
-    public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(aiCardInfoController).build();
+    public void setUp() throws IOException {
+        // 读取本地文件
+        File pngFile = new File("D:\\bCard\\png\\aicard_20241023124107.png");
+        FileInputStream input = new FileInputStream(pngFile);
+        file = new MockMultipartFile("file", pngFile.getName(), "image/png", input);
     }
 
     @Test
-    public void uploadFileMinio_ValidFile_ShouldReturnErrorLogout() throws Exception {
-        // Arrange
-        MultipartFile file = mock(MultipartFile.class);
-        when(file.getContentType()).thenReturn(MediaType.IMAGE_PNG_VALUE);
-        when(file.getSize()).thenReturn(100L);
+    public void testUploadFileToLocal() throws Exception {
+        // 读取实际文件
+//        byte[] fileContent = Files.readAllBytes(Paths.get("D:\\bCard\\png\\aicard_20241023124107.png"));
+//        MockMultipartFile file = new MockMultipartFile("resumefile", "aicard_20241023124107.png", "text/plain", fileContent);
 
-        doNothing().when(aiCardInfoService).uploadFile(any(MultipartFile.class));
+        // 读取实际图片文件
+        byte[] fileContent = Files.readAllBytes(Paths.get("D:\\bCard\\png\\aicard_20241023124107.png"));
+        MockMultipartFile file = new MockMultipartFile("resumefile", "aicard_20241023124107.png", "image/jpeg", fileContent);
 
-        // Act & Assert
-        mockMvc.perform(multipart("/api/aiCardInfo/upload")
-                .file((MockMultipartFile) file)
+        // 模拟HTTP POST请求上传文件
+        mockMvc.perform(MockMvcRequestBuilders.multipart("/api/aiCardInfo/upload")
+                .file(file)
                 .contentType(MediaType.MULTIPART_FORM_DATA))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("File uploaded successfully"));
+
+        // 可以在这里添加更多的断言，例如验证服务层的方法是否被调用
+        // verify(aiCardInfoService, times(1)).uploadFileToMinio(any());
+    }
+
+    @Test
+    public void add_ValidAiCardInfo_ShouldReturnOK() throws Exception {
+        AiCardInfo aiCardInfo = new AiCardInfo();
+        aiCardInfo.setName("John Doe");
+        aiCardInfo.setEmail("john.doe@example.com");
+
+
+        mockMvc.perform(post("/api/aiCardInfo")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"John Doe\",\"email\":\"john.doe@example.com\"}"))
                 .andExpect(status().isOk());
-
-        verify(aiCardInfoService, times(1)).uploadFile(any(MultipartFile.class));
     }
 
     @Test
-    public void uploadFileMinio_InvalidFile_ShouldReturnBadRequest() throws Exception {
-        // Arrange
-        MultipartFile file = mock(MultipartFile.class);
-        when(file.getContentType()).thenReturn(MediaType.TEXT_PLAIN_VALUE);
-        when(file.getSize()).thenReturn(100L);
+    public void listAll_Success() throws Exception {
 
-        // Act & Assert
-        mockMvc.perform(multipart("/api/aiCardInfo/upload")
-                .file((MockMultipartFile) file)
-                .contentType(MediaType.MULTIPART_FORM_DATA))
-                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(post("/api/aiCardInfo/listAllCards"))
+                .andExpect(status().isOk()) ;
+
     }
-}
 
+
+}

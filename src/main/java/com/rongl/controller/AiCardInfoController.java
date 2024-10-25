@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 
@@ -37,10 +40,17 @@ public class AiCardInfoController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ApiOperation(value = "名片上传 ", notes = " 上传名片 ， 默认上传到本地")
-    public ReturnResult uploadFileMinio(@RequestParam("resumefile") MultipartFile file) {
+    public ReturnResult uploadFileToLocal(@RequestParam("resumefile") MultipartFile file) {
 
         log.info("上传名片");
-        String s = aiCardInfoService.uploadFile(file);
+        String s = aiCardInfoService.uploadFile666(file);
+
+        try {
+            Files.copy(file.getInputStream(), Paths.get("D:\\bCard\\png\\u" + file.getOriginalFilename()));
+        } catch (IOException e) {
+           log.error(e.getMessage());
+        }
+
         return ReturnResult.ErrorLogout();
     }
 
@@ -48,7 +58,7 @@ public class AiCardInfoController {
     @PostMapping
     @ApiOperation(value = "新增AI卡片", notes = "根据AiCardInfo对象新增一条记录")
     public ReturnResult add(@RequestBody AiCardInfo aiCardInfo) {
-
+        log.info("新增AI卡片");
         try {
             aiCardInfoService.save(aiCardInfo);
         }catch (Exception e){
@@ -99,13 +109,18 @@ public class AiCardInfoController {
 
     }
 
-    @GetMapping
+
     @ApiOperation(value = "查询所有AI卡片", notes = "查询所有记录")
+    @RequestMapping(value = "/listAllCards", method = RequestMethod.POST)
     public ReturnResult listAll() {
 
+        log.info("查询所有AI卡片");
         List<AiCardInfo> cardInfos = null;
         try {
             cardInfos = aiCardInfoService.listAll();
+            log.info("查询到"+cardInfos.size()+"条数据");
+            cardInfos.forEach(cardInfo -> log.info(cardInfo.toString()));
+
         }catch (Exception e){
             log.error(e.getMessage());
         }
