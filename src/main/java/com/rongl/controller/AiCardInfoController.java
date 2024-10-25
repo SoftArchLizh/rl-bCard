@@ -55,7 +55,7 @@ public class AiCardInfoController {
     public ReturnResult uploadFileToLocal(@RequestParam("bCardfile") MultipartFile file, HttpServletRequest request) {
 
         log.info("上传名片");
-
+        String parserCard = "";
         try {
             UUID uuid = UUID.randomUUID();
             String uploadfile = "";
@@ -80,13 +80,13 @@ public class AiCardInfoController {
             log.info("文件保存路径：" + uploadfile);
             Files.copy(file.getInputStream(), Paths.get(uploadfile));
 
-            String s = aiCardInfoService.uploadFile(outpathLinux);
+              parserCard = aiCardInfoService.uploadFile(outpathLinux);
 
         } catch (IOException e) {
            log.error(e.getMessage());
         }
 
-        return ReturnResult.ErrorLogout();
+        return ReturnResult.OK().setData(parserCard);
     }
 
 
