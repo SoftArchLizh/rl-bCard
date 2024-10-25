@@ -38,9 +38,6 @@ public class AiCardInfoControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private AiCardInfoServiceImpl aiCardInfoService; // 假设AiCardInfoService是AiCardInfoController的依赖
-
     private MockMultipartFile file;
 
     @BeforeEach

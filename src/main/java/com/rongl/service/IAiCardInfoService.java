@@ -2,6 +2,7 @@ package com.rongl.service;
 
 import com.rongl.entity.AiCardInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ import java.util.List;
 public interface IAiCardInfoService extends IService<AiCardInfo> {
 
     List<AiCardInfo> listAll();
+    String  uploadFile666(MultipartFile file);
 }

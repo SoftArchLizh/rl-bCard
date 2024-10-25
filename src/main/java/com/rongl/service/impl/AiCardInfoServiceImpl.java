@@ -24,10 +24,11 @@ public class AiCardInfoServiceImpl extends ServiceImpl<AiCardInfoMapper, AiCardI
 
     @Override
     public List<AiCardInfo> listAll() {
-
+        log.info("开始  listAll");
         return null;
     }
 
+    @Override
     public String  uploadFile666(MultipartFile file) {
         String path = "";
         log.info("开始保存名片到本地");
@@ -52,7 +53,7 @@ public class AiCardInfoServiceImpl extends ServiceImpl<AiCardInfoMapper, AiCardI
             throw new RuntimeException("文件不存在！");
         }
 
-        return "";
+        return "开始保存名片到本地";
 
     }
 }

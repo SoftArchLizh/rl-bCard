@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -40,13 +41,21 @@ public class AiCardInfoController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ApiOperation(value = "名片上传 ", notes = " 上传名片 ， 默认上传到本地")
-    public ReturnResult uploadFileToLocal(@RequestParam("resumefile") MultipartFile file) {
+    public ReturnResult uploadFileToLocal(@RequestParam("resumefile") MultipartFile file, HttpServletRequest request) {
 
         log.info("上传名片");
         String s = aiCardInfoService.uploadFile666(file);
-
+        log.info("上传名片：  ：  ：  "+ s);
         try {
-            Files.copy(file.getInputStream(), Paths.get("D:\\bCard\\png\\u" + file.getOriginalFilename()));
+
+            String uploadfile = "D:\\bCard\\png\\u" + file.getOriginalFilename();
+            String headerToken  = request.getHeader("X-Token"); //
+            String uid  = request.getHeader("uniqueId");
+            // 从header 里获取用户 唯一标识，用于后续 记录日志 ； 禁止批量上传
+            log.info("X-Token ： "+headerToken);
+            log.info("uid  ： "+uid);
+            log.info("文件保存路径：" + uploadfile);
+            Files.copy(file.getInputStream(), Paths.get(uploadfile));
         } catch (IOException e) {
            log.error(e.getMessage());
         }
