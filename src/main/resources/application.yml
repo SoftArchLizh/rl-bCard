@@ -34,7 +34,7 @@ mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml  #mapper.xml文件所
 
 bCard-path-win: D:\bCard\png\
-bCard-path-linux: /rl-ai/bCard-Jar/png/
+bCard-path-linux: /usr/local/tomcat/webapps/bcard/png
 
 bCard-outpath-linux: http://47.96.171.86/api/bCard/
 

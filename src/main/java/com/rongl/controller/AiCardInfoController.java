@@ -78,6 +78,7 @@ public class AiCardInfoController {
             log.info("X-Token ： "+headerToken);
             log.info("uid  ： "+uid);
             log.info("文件保存路径：" + uploadfile);
+
             Files.copy(file.getInputStream(), Paths.get(uploadfile));
 
               parserCard = aiCardInfoService.uploadFile(outpathLinux);
