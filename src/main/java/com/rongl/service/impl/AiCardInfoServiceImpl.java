@@ -39,7 +39,7 @@ public class AiCardInfoServiceImpl extends ServiceImpl<AiCardInfoMapper, AiCardI
         log.info("外部访问路径：： "+filePath);
 
         OpenAiClient client = BCardUtils.initOpenAI();
-        Content textContent = Content.builder().text("请帮识别图片的格式 ，文字内容，谢谢").type(Content.Type.TEXT.getName()).build();//What’s in this image?
+        Content textContent = Content.builder().text("请帮识别图片的格式 ，文字内容，并用json返回，谢谢").type(Content.Type.TEXT.getName()).build();//What’s in this image?
         ImageUrl imageUrl = ImageUrl.builder().url(filePath).build();
 //        ImageUrl imageUrl = ImageUrl.builder().url("D:\\bCard\\png\\Gfp-wisconsin-madison-the-nature-boardwalk.jpg.webp").build();
         Content imageContent = Content.builder().imageUrl(imageUrl).type(Content.Type.IMAGE_URL.getName()).build();
